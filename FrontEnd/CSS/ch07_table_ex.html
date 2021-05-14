@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, td { 
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+        /* 마지막줄 뺴고 색 넣기 */
+        /* 방법1 #table1 tr:not(:last-child){
+            background-color: chartreuse;
+        } */
+        /* 방법2 .backCorlor {background-color: chartreuse;} */
+
+    </style>
+</head>
+<body>
+    <table id="table1">
+        <tr class="backCorlor">
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+        </tr>   
+        <tr class="backCorlor">
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+        </tr>  
+        <tr>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+        </tr>    
+    </table>
+    <br>
+    <table>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+        </tr>   
+        <tr>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+        </tr>  
+        <tr>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+        </tr>    
+    </table>
+
+</body>
+</html>

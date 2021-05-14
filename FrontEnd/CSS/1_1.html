@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            display: flex;
+            height: 100%;
+            flex-direction: column;
+        }
+        .header { 
+            background-color: #1abc9c;
+            height: 120px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+        }
+        .footer { 
+            background-color: #3498db;
+            bottom: 0;
+            height: 100px;
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 100px;
+            }
+
+        #section { 
+            flex-grow: 1;
+            width: 100%;
+            height: 100%;
+            width: 400px;
+            height: 300px;
+            margin-top: 5px;
+        }
+        #article {
+            width: 100%;
+            height: 100%;
+            width: 400px;
+            height: 600px;
+            margin-top: -70px;
+        }
+
+        html,body {
+            box-sizing: border-box;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-y: auto;
+            /* 가로세로 전체화면 */
+        }
+
+        #parent {
+            display: flex;
+        }
+        #ft {
+            flex-direction: column-reverse;
+            justify-content: center;
+        }
+        .box {
+            height: -1000px;
+            overflow: auto;
+        }
+        img.absolute {
+            position: absolute;
+            left: 700px;
+            top: 150px;
+        }
+        img {
+            width: 600px;
+            height: 400px;
+        }
+        #content {
+            margin-top: 150px;
+            margin-bottom: 10px;
+        }
+        
+    </style>
+</head>
+<header>
+    <div id="content">
+    <div id="img">
+        <a href="http://www.google.com" target="_blank">
+            <img src="../쌀과자.jpg" 
+            style="float: right;">
+        </a>
+    </div>
+    <div class="sss">
+    <div id="section">
+        <h1>1. 바이든 정부의 ‘2021 무역정책 어젠다'
+        </h1>
+        지난 3월 1일 미국 무역대표부(USTR)는 올해 바이든 행정부의 무역정책 의제가 담긴 ‘2021 Trade Policy Agenda and 2020 Annual Report’를 공개했다. USTR은 '74년 무역법 163조에 따라 당해연도 대통령 무역정책 방향과 전년도 활동을 종합한 해당 보고서를 의회에 제출하게 된다.
+        <br>
+    </div>
+    <div id="article">
+        <h1>2. 무역정책 어젠다 상세 내용</h1>
+        국내 보건 역량 강화를 위해 의료장비(약품) 국내 생산체계를 확립하고 향후 재발할 수 있는 글로벌 팬데믹 위기에 대비해 국제 보건·인도적 지원을 확대한다는 계획이다. 또한, 미국 경제회복을 위한 지원 수단으로써 적극적인 무역정책 사용을 공언하며 미국 기업, 노동자, 기술, 제조업 국제 경쟁력 제고를 위한 종합 대책을 마련하겠다고 밝혔다.
+    <br>
+</div>
+</div>
+</div>
+</header>
+<body>
+    <div id ="container">
+    <div class="header">header</div>
+    <div class="scetion">scetion</div>
+    <div class="footer">footerfooterfooterfooter</div>
+    </div>
+</body>
+</html>

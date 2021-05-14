@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex</title>
+    <style>
+        #parent {
+            display: flex;
+            flex-direction: row;
+        }
+        #container {
+            flex-grow: 1;/*부모가 flex이면 자식도 flex-grow가 가능*/
+            background-color: pink;
+            height: 200px;
+            display: flex;
+            flex-direction: column; /*column :  수직(위에서 아래)*/
+            justify-content: space-evenly;
+            align-items: flex-start;
+        }
+        #container2 {
+            display: flex;
+            flex-grow: 1;
+            background-color: blue;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+    </style>
+</head>
+<body>
+    <div id="parent">
+    <div id="container">
+        <div>A</div>
+        <div>B</div>
+        <div>C</div>
+        <div>D</div>
+    </div>
+    <div id="container2">
+        <div>A</div>
+        <div>B</div>
+        <div>C</div>
+        <div>D</div>
+    </div>
+    </div>
+</body>
+</html>
