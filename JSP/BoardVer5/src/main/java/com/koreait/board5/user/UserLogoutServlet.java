@@ -19,6 +19,12 @@ public class UserLogoutServlet extends HttpServlet {
 		HttpSession hs = request.getSession();
 		// invalidate(); 세션을 삭제하는 메소드
 		hs.invalidate();
+		/*
+		 로그아웃하는 다른방법
+		 hs.setAttribute("loginUSer", null);
+		 hs.removeAttribute(""); 
+		 */
+		
 		response.sendRedirect("login");
 	}
 

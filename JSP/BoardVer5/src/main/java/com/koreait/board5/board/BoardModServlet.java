@@ -20,9 +20,10 @@ public class BoardModServlet extends HttpServlet {
 		
 		int iboard = MyUtils.getParamInt("iboard", request);
 		
-		BoardVO data = BoardDAO.selBoard(iboard);
-		request.setAttribute("data", data);
+		BoardVO param = new BoardVO();
+		param.setIboard(iboard);
 		
+		request.setAttribute("data", BoardDAO.selBoard(param));
 		MyUtils.openJSP("board/mod", request, response);
 	}
 

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import com.koreait.board5.MyUtils;
+import com.koreait.board5.cmt.CmtDAO;
+import com.koreait.board5.cmt.CmtVO;
 
 
 @WebServlet("/board/detail")
@@ -17,12 +19,18 @@ public class BoardDetailServlet extends HttpServlet {
        
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int iboard = MyUtils.getParamInt("iboard", request);
+		// TODO BoardDAO에 selBoard에서 값을 받아옴
 		
-		// TODO BoardDAO 에 selBoard에서 값을 받아옴
-		BoardVO data = BoardDAO.selBoard(MyUtils.getParamInt("iboard", request));
-				
+		BoardVO param = new BoardVO();
+		param.setIboard(iboard);
+		
+		CmtVO cv = new CmtVO();
+		cv.setIboard(iboard);
 		// TODO : 주소값 담음
-		request.setAttribute("data", data);
+		request.setAttribute("data", BoardDAO.selBoard(param));
+		request.setAttribute("cmtList", CmtDAO.selCmtList(cv));
+		
 		MyUtils.openJSP("board/detail", request, response);
 	}
 

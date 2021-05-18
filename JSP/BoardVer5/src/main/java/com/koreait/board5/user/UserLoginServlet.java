@@ -24,15 +24,31 @@ public class UserLoginServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		/* 
+		 userLogin.jsp에서 입력받은 String자료형에 변수명 uid, String 자료형에 변수명 upw에
+		 getParameter로 저장한다
+		 */
 		String uid = request.getParameter("uid");
 		String upw = request.getParameter("upw");
 		
+		/*
+		 UserVO의 변수명 param인 객체를 생성하여 uid값을 담는다
+		 */
 		UserVO param = new UserVO();
 		param.setUid(uid);
 		
+		/*
+		UserDAO에 메소드selUser안에 param변수를 담소 UserVO타입에 변수명 result를 생성한다
+		 */
 		UserVO result = UserDAO.selUser(param);
 		
+		/*
+		 result값이 null이면 아이디 확인 에러메세지 출력
+		 result값이 들어있으면 DB에 저장된 비밀번호와 입력한 패스워드가 일치한지 확인해서
+		 패스워드가 일치하면 패스워드를 지우고 나머지 UserDAO의 selUser안의 나머지 값들을 저장 후 listServlet
+		 으로 이동
+		 패스워드가 일치히지 않을경우 에러메세지 출력
+		 */
 		// TODO : 로그인 확인
 		if(result == null) {
 			// 아이디 없음

@@ -9,7 +9,7 @@
 <body>
 	<h1>글수정</h1>
 	<div>
-		<form action="write" method="post">
+		<form action="mod" method="post">
 			<div>글번호 : <input type="hidden" name="iboard" value="${data.iboard}"></div>
 			<div>
 				제목 : <input type="text" name="title" placeholder="제목" value="${data.title }">

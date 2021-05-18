@@ -40,7 +40,7 @@ public class BoardDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		
+		// 컬럼명을 일치시킨다
 		String sql = " SELECT A.iboard, A.title, A.ctnt, A.regdt, B.unm "
 				+ " FROM t_board A "
 				+ " LEFT JOIN t_user B "
@@ -75,7 +75,7 @@ public class BoardDAO {
 		return list;
 	}
 	
-	public static BoardVO selBoard(int iboard) {
+	public static BoardVO selBoard(BoardVO param) {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -90,7 +90,7 @@ public class BoardDAO {
 		try {
 			con = DBUtils.getCon();
 			ps = con.prepareStatement(sql);
-			ps.setInt(1, iboard);
+			ps.setInt(1, param.getIboard());
 			
 			rs = ps.executeQuery();
 			
@@ -104,7 +104,7 @@ public class BoardDAO {
 				
 				// TODO : 값을 담음
 				data = new BoardVO();
-				data.setIboard(iboard);
+				data.setIboard(param.getIboard());
 				data.setTitle(title);
 				data.setCtnt(ctnt);
 				data.setRegdt(regdt);

@@ -19,7 +19,7 @@ public class DBUtils {
 		*/
 		final String DB_NAME = "boardver4";
 		final String DRIVER = "com.mysql.cj.jdbc.Driver";
-		final String URL = "jdbc:mysql://localhost:3306/" + DB_NAME;
+		final String URL = "jdbc:mysql://localhost:3308/" + DB_NAME;
 		final String USER_NAME = "root";
 		final String PASSWORD = "koreait";
 		/*
