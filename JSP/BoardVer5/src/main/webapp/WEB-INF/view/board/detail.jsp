@@ -6,10 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>디테일</title>
+<link href="/res/css/boardList.css" rel="stylesheet">
+<link rel="stylesheet" 
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <style>
 	.hidden { display: none; }
+	.fa-heart{ color: red; }
 </style>
-<link href="/res/css/boardList.css" rel="stylesheet">
 <script defer="defer" src="/res/js/BoardDetail.js"></script>
 </head>
 <body>
@@ -18,7 +21,14 @@
 	<div>${param.iboard}</div>
 	
 	<div>글번호 : ${data.iboard}</div>
-	<div>제목 : ${data.title}</div>
+	<div>제목 : ${data.title}
+		<c:if test="${data.isFav eq 0}">
+			<a href="fav?iboard=${param.iboard }&fav=1"><i class="far fa-heart"></i></a> 
+		</c:if>
+		<c:if test="${data.isFav eq 1}">
+			<a href="fav?iboard=${param.iboard }&fav=0"><i class="fas fa-heart"></i></a>
+		</c:if>
+	</div>
 	<div>작성자 : ${data.unm} | 작성일시 : ${data.regdt}</div>
 	<div>${data.ctnt}</div>
 	
@@ -30,6 +40,7 @@
 	</c:if>
 	
 	<h3>댓글</h3>
+	<!-- 등록때 쓰는 form -->
 	<div>
 		<form id="insFrm" action="cmt" method="post">
 			<!-- 
@@ -46,7 +57,7 @@
 			</div>
 		</form>
 	</div>
-	
+	<!-- 수정할때 쓰는 form -->
 	<div>
 		<form id="updFrm" action="cmt" method="post" class="hidden">
 			<input type="hidden" name="icmt" value="0">

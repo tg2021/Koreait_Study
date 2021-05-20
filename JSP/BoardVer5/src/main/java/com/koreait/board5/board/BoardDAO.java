@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.koreait.board5.board.BoardVO;
+
 import com.koreait.board5.DBUtils;
 
 public class BoardDAO {
@@ -41,12 +41,12 @@ public class BoardDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		// 컬럼명을 일치시킨다
+		
 		String sql = " SELECT A.iboard, A.title, A.ctnt, A.regdt, B.unm "
 				+ " FROM t_board A "
 				+ " LEFT JOIN t_user B "
 				+ " ON A.iuser = B.iuser "
 				+ " ORDER BY A.iboard DESC";
-		
 		try {
 			con = DBUtils.getCon();
 			ps = con.prepareStatement(sql);
@@ -81,16 +81,21 @@ public class BoardDAO {
 		ResultSet rs = null;
 		BoardVO data = null;
 		
-		String sql = " SELECT A.iboard, A.iuser, A.title, A.ctnt, A.regdt, B.unm "
-				+ " FROM t_board A "
-				+ " LEFT JOIN t_user B "
-				+ " ON A.iuser = B.iuser "
-				+ " WHERE iboard = ? ";
+		String sql = "SELECT A.iboard, A.title, A.ctnt, A.iuser, A.regdt,"
+				+ " B.unm, if(C.iboard IS NULL, 0, 1) AS isFav "
+				+ "FROM t_board A "
+				+ "INNER JOIN t_user B "
+				+ "ON A.iuser = B.iuser "
+				+ "LEFT JOIN t_board_fav C "
+				+ "ON A.iboard = C.iboard AND C.iuser = ? "
+				+ "WHERE A.iboard = ?";
+		
 		
 		try {
 			con = DBUtils.getCon();
 			ps = con.prepareStatement(sql);
-			ps.setInt(1, param.getIboard());
+			ps.setInt(1, param.getIuser()); // 로그인 user PK
+			ps.setInt(2, param.getIboard());
 			
 			rs = ps.executeQuery();
 			
@@ -101,6 +106,7 @@ public class BoardDAO {
 				String unm = rs.getString("unm");
 				String regdt = rs.getString("regdt");
 				int iuser = rs.getInt("iuser");
+				int isFav = rs.getInt("isFav");
 				
 				// TODO : 값을 담음
 				data = new BoardVO();
@@ -110,7 +116,7 @@ public class BoardDAO {
 				data.setRegdt(regdt);
 				data.setUnm(unm);
 				data.setIuser(iuser);
-				
+				data.setIsFav(isFav);
 			}
 			return data;
 			

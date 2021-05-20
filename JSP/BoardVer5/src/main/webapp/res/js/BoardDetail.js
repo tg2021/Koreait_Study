@@ -32,8 +32,8 @@ function updCmt(icmt, cmt) {
 
 function showInsFrm() {
 	
-		insFrm.className = '';
-		updFrm.className = 'hidden';
+	insFrm.className = '';
+	updFrm.className = 'hidden';
 	
 }
 

@@ -8,8 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.koreait.board5.MyUtils;
-import com.koreait.board5.board.BoardDAO;
-import com.koreait.board5.board.BoardVO;
+
 
 
 @WebServlet("/board/del")

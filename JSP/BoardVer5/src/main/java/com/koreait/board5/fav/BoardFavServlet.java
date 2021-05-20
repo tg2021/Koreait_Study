@@ -1,4 +1,4 @@
-package com.koreait.board5.board;
+package com.koreait.board5.fav;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,37 +7,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import com.koreait.board5.MyUtils;
-import com.koreait.board5.cmt.CmtDAO;
-import com.koreait.board5.cmt.CmtVO;
 
 
-@WebServlet("/board/detail")
-public class BoardDetailServlet extends HttpServlet {
+@WebServlet("/board/fav")
+public class BoardFavServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    
+   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// insert, delete때도 필요하다
 		int iboard = MyUtils.getParamInt("iboard", request);
-		// TODO BoardDAO에 selBoard에서 값을 받아옴
 		int iuser = MyUtils.getLoginUserPK(request);
-		BoardVO param = new BoardVO();
-		param.setIboard(iboard);
-		param.setIuser(iuser);
+		int fav = MyUtils.getParamInt("fav", request);
 		
-		CmtVO cv = new CmtVO();
-		cv.setIboard(iboard);
-		// TODO : 주소값 담음
+		switch(fav) {
+		case 0: // 좋아요 취소(delete)
+			FavDAO.delFav(iboard, iuser);
+			break;
+		case 1: // 좋아요 처리(insert)
+			FavDAO.insFav(iboard, iuser);
+			break;
+		}
 		
-		request.setAttribute("data", BoardDAO.selBoard(param));
-		
-		request.setAttribute("cmtList", CmtDAO.selCmtList(cv));
-		
-		MyUtils.openJSP("board/detail", request, response);
+		response.sendRedirect("detail?iboard=" + iboard);
 	}
 
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
