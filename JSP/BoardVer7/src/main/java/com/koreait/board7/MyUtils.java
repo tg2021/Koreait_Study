@@ -16,16 +16,13 @@ public class MyUtils {
 	
 	public static int getLoginUserPK(HttpServletRequest req) {
 		/*
-		안좋은 코드
 		if(req == null) { return null; } 
 		HttpSession hs = req.getSession();
 		return (UserVO) hs.getAttribute("loginUser");
 		*/
-		/*
+		
 		if(req == null) { return 0;}
 		return getLoginUser(req).getIuser();
-		 */
-		return 0;
 	}
 	// TODO : session을 사용하기위해 
 	public static UserEntity getLoginUser(HttpServletRequest req) {
