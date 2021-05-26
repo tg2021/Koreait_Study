@@ -15,8 +15,9 @@
 			<td>${item.iboard}</td> 
 			<td>
 				<c:choose>
-					<c:when test="${param.searchType eq 1 ||pram.searchText eq 2 }">
+					<c:when test="${param.searchType eq 1 ||pram.searchType eq 2 }">
 						${item.title.replace(param.searchText, '<mark>' += param.searchText += '</mark>') }
+						
 					</c:when>
 					<c:otherwise>
 						${item.title}

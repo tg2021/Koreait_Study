@@ -50,6 +50,8 @@ public class BoardCmtInsSelServlet extends HttpServlet {
 		Gson gson = new Gson();
 		String json = gson.toJson(list);
 		System.out.println("json : " + json);
+		
+		response.setCharacterEncoding("UTF-8");
 		response.getWriter()
 		.append(json);
 	}
