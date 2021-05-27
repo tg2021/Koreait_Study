@@ -1,5 +1,7 @@
 var cmtFrmElem = document.querySelector('#cmtFrm');	
 var cmtListElem = document.querySelector('#cmtList');
+var cmtModalElem = document.querySelector('#modal');
+
 function regCmt() {
 	var cmtVal = cmtFrmElem.cmt.value;
 	console.log('cmtVal : ' + cmtVal);
@@ -16,6 +18,7 @@ function regCmt() {
 function regAjax(param) {
 	const init = {
 		method: 'POST',
+		// 주소값을 받아오는 간단한 방법
 		body: new URLSearchParams(param)
 		};
 		
@@ -113,12 +116,19 @@ function makeCmtElemList(data) {
 			// 삭제버튼 클릭시 
 			delBtn.addEventListener('click',function(){
 				// closeUp 기법 
-				delAjax(item.icmt);
+				
+				// 결과문이 true면 실행 
+				// concfirm boolean type
+				if(confirm('삭제하시겠습니까?')) {
+				delAjax(item.icmt);					
+				}
 			});
 				
-			
-			
-			delBtn.add
+			// 수정			
+			modBtn.addEventListener('click', function() {
+				//댓글 수정 모달창 띄우기
+				 openModModal(item);
+			});
 			
 			delBtn.innerText = '삭제';
 			modBtn.innerText = '수정';
@@ -163,7 +173,52 @@ function delAjax(icmt) {
 	});
 }
 
+function modAjax() {
+	var cmtModFrmElem = cmtModalElem.querySelector('#cmtModFrm');
+	// 자바스크립트 객체 생성방법
+	var param = {
+		icmt: cmtModFrmElem.icmt.value,
+		cmt: cmtModFrmElem.cmt.value
+	}
+	
+const init = {
+	method: 'POST',
+		// 주소값을 받아오는 간단한 방법
+		body: new URLSearchParams(param)
+		};
+		
+		fetch('cmtDelUpd', init)
+		.then(function(res) {
+			return res.json();
+		})
+		.then(function(myJson) {
+			console.log(myJson)
+			switch(myJson) {
+				case 0:
+				console.log('댓글 수정에 실패했습니다');
+				break;
+				case 1:
+				console.log('댓글 수정에 성공했습니다');
+				getListAjax();
+				closeModModal();
+				break;
+			}
+		});		
+}
 
+function openModModal({icmt, cmt}) {
+	cmtModalElem.className = '';
+	console.log('icmt : ' + icmt);
+	console.log('cmt : ' + cmt);
+
+	var cmtModFrmElem = cmtModalElem.querySelector('#cmtModFrm');
+	cmtModFrmElem.icmt.value = icmt;
+	cmtModFrmElem.cmt.value = cmt;
+}
+
+function closeModModal() {
+	cmtModalElem.className = 'displayNone';
+}
 /*
 이 파일이 임포드되면 함수 1회 호출!
 없으면 값만 받고 값을 서블릿으로 주지않는다.

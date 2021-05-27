@@ -80,6 +80,31 @@ public class BoardCmtDAO {
 		return list;
 	}
 	
+	public static int updBoardCmt(BoardCmtEntity param) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		int result = 0;
+		
+		String sql = "UPDATE t_board_cmt "
+				+ " SET cmt = ? "
+				+ "	WHERE icmt = ? AND iuser = ?";
+		
+		try {
+			con = DBUtils.getCon();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, param.getCmt());
+			ps.setInt(2, param.getIcmt());
+			ps.setInt(3, param.getIuser());
+			result = ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBUtils.close(con, ps);
+		}
+		return result;
+	}
+	
 	public static int delBoardCmt(BoardCmtEntity param) {
 		Connection con = null;
 		PreparedStatement ps = null;
