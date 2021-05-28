@@ -21,12 +21,13 @@ function regAjax(param) {
 		// 주소값을 받아오는 간단한 방법
 		body: new URLSearchParams(param)
 		};
-		
+		// ''안에 데이터를 서버에 응답요청
 		fetch('cmtInsSel', init)
+		// 다음 할일 예약(?)
 		.then(function(res) {
 			return res.json();
 		})
-		.then(function(myJson) {
+		.then(function(myJson) { // then안에 function : 익명함수
 			console.log(myJson);
 			
 			switch(myJson.result) {

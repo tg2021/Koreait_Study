@@ -47,7 +47,6 @@ public class BoardListServlet extends HttpServlet {
 		
 		request.setAttribute("pagingCnt", BoardDAO.selPageingCnt(param));
 		request.setAttribute("page", BoardDAO.selBoardList(param));
-		
 		MyUtils.openJSP("리스트", "board/boardList", request, response);
 	}
 
