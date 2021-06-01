@@ -15,18 +15,30 @@
     </properties>
 
     <dependencies>
+        <!--
+        Spring Context 4.3.30.RELEASE
+        https://mvnrepository.com/artifact/org.springframework/spring-context
+         -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>${spring-version}</version>
         </dependency>
 
+        <!--
+        Spring Web MVC 4.3.30.RELEASE
+        https://mvnrepository.com/artifact/org.springframework/spring-webmvc
+        -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring-version}</version>
         </dependency>
 
+        <!--
+        Java Servlet API 4.0.1
+        https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
+        -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -34,12 +46,20 @@
             <scope>provided</scope>
         </dependency>
 
+        <!--
+        JSTL 1.2
+        https://mvnrepository.com/artifact/javax.servlet/jstl
+        -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
 
+        <!--
+        JavaServer Pages(TM) API 2.2
+        https://mvnrepository.com/artifact/javax.servlet.jsp/jsp-api
+        -->
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>jsp-api</artifactId>
@@ -47,6 +67,10 @@
             <scope>provided</scope>
         </dependency>
 
+        <!--
+        Project Lombok 1.18.20
+        https://mvnrepository.com/artifact/org.projectlombok/lombok
+        -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -54,30 +78,40 @@
             <scope>provided</scope>
         </dependency>
 
+        <!--
+        MySQL Connector/J 8.0.25
+        https://mvnrepository.com/artifact/mysql/mysql-connector-java
+        -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.25</version>
         </dependency>
 
+        <!--
+        MyBatis 3.5.7
+        https://mvnrepository.com/artifact/org.mybatis/mybatis
+        -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
             <version>3.5.7</version>
         </dependency>
 
+        <!--
+        MyBatis Spring 2.0.6
+        https://mvnrepository.com/artifact/org.mybatis/mybatis-spring
+        -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
             <version>2.0.6</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-            <version>${spring-version}</version>
-        </dependency>
-
+        <!--
+        HikariCP » 4.0.3
+        https://mvnrepository.com/artifact/com.zaxxer/HikariCP
+        -->
         <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>

@@ -25,7 +25,7 @@
             <param-value>/WEB-INF/dispatcherServlet.xml</param-value>
         </init-param>
     </servlet>
-    
+
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <!--/로 모든 요청의 응답을 받을 수 있다-->
@@ -46,4 +46,6 @@
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+
 </web-app>
