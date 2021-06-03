@@ -9,6 +9,17 @@
         (uid, upw, unm, gender)
         VALUES
         (#{uid}, #{upw}, #{unm}, #{gender})
+        /*
+            #은 알아서 판단한다
+        */
     </insert>
+
+    <select id="selUser" resultType="UserEntity">
+
+        SELECT * FROM t_user
+        WHERE uid = #{uid}
+    </select>
 </mapper>
+
+
 

@@ -29,8 +29,7 @@
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="typeAliasesPackage" value="com.koreait.spring1"/>
-        <!-- -->
+        <property name="typeAliasesPackage" value="com.koreait.spring"/>
         <property name="mapperLocations" value="classpath:mapper/*.xml"/>
     </bean>
     <mybatis-spring:scan base-package="com.koreait.spring"/>
