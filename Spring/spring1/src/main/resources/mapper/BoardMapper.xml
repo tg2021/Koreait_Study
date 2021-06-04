@@ -13,5 +13,15 @@
         ON A.iuser = B.iuser
         ORDER BY A.iboard DESC
     </select>
+
+    <select id="selBoard" resultType="BoardDomain">
+        SELECT A.iboard, A.title, A.iuser, A.regdt, A.ctnt,
+        B.unm AS writerNm, B.profileImg
+        FROM t_board A
+        INNER JOIN t_user B
+        ON A.iuser = B.iuser
+        WHERE A.iboard = #{iboard}
+    </select>
+
 </mapper>
 

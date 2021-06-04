@@ -25,6 +25,9 @@
           <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.11.4" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:4.3.30.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:4.3.30.RELEASE" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.12.3" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.12.3" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.12.3" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="spring1/web/Web" />

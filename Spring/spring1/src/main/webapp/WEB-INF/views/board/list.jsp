@@ -4,9 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>리스트</title>
+    <link rel="stylesheet" href="/res/css/boardList.css">
+    <script defer src="/res/js/boardList.js"></script>
 </head>
 <body>
     <h1>리스트</h1>
+    <div>로그인 아이디 : ${sessionScope.loginUser.uid}</div>
     <table>
         <tr>
             <th>번호</th>
@@ -14,6 +17,7 @@
             <th>글쓴이</th>
             <th>작성일시</th>
         </tr>
+        ${item.iboard}
         <c:forEach items="${requestScope.list}" var="item">
             <tr class="record" onclick="moveToDetail(${item.iboard});">
                 <td>${item.iboard}</td>
