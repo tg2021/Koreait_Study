@@ -14,5 +14,6 @@ public interface BoardMapper {
          MyBatis-Spring은 Mapper 인터페이스를 이용해서
          실제 SQL 처리가 되는 클래스를 자동으로 생성합니다.
      */
+
 }
 

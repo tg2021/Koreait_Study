@@ -19,10 +19,14 @@ function regAjax(param) {
 	const init = {
 		method: 'POST',
 		// 주소값을 받아오는 간단한 방법
-		body: JSON.stringify(param)
+		body: JSON.stringify(param),
+			headers:{
+				'accept' : 'application/json',
+				'content-type' : 'application/json;charset=UTF-8'
+			}
 		};
 		// ''안에 데이터를 서버에 응답요청
-		fetch('cmtInsSel', init)
+		fetch('cmtIns', init)
 		// 서버에서 준 값
 		.then(function(res) {
 			return res.json();
@@ -48,7 +52,7 @@ function regAjax(param) {
 function getListAjax() {
 	var iboard = cmtListElem.dataset.iboard;
 	
-	fetch('cmtInsSel?iboard=' + iboard)
+	fetch('cmtSel?iboard=' + iboard)
 	.then(function(res) {
 		return res.json();
 	})
@@ -60,10 +64,14 @@ function getListAjax() {
 	});
 }
 
+// 댓글 리스트
 function makeCmtElemList(data) {
 	// html의 태그를 만들 수 있다.
-	cmtListElem.innerHTML = '';
-	
+	cmtListElem.innerHTML = '';	// text를 출력할때 태그인식한다
+	//cmtListElem.innerText = ''; // 그냥 text로 찍음(태그 인식x)
+	//cmtListElem.append(""); // 내용추가(뒤)
+	//cmtListElem.prepend(""); // 내용추가(앞)
+
 	var tableElem = document.createElement('table');
 	var trElemTitle = document.createElement('tr');
 	var thElemCtnt = document.createElement('th');
@@ -224,7 +232,7 @@ function closeModModal() {
 이 파일이 임포드되면 함수 1회 호출!
 없으면 값만 받고 값을 서블릿으로 주지않는다.
 */
-//getListAjax();
+getListAjax();
 
 
 

@@ -18,12 +18,13 @@
     <c:if test="${not empty sessionScope.loginUser}">
         <div>
             <form id="cmtFrm" onsubmit="return false;">
-                <input type="text" id="cmt" placeholder="댓글">
+                <input type="text" id="cmt" placeholder="댓글" value="">
                 <input type="button" value="댓글달기" onclick="regCmt();">
             </form>
         </div>
     </c:if>
-    <div id="cmtList" data-login-user-pk="${sessionScope.loginUser.iuser}" data-iboard="${param.iboard}"></div>
+    <div id="cmtList" data-login-user-pk="${sessionScope.loginUser.iuser}"
+         data-iboard="${param.iboard}"></div>
 
 </body>
 

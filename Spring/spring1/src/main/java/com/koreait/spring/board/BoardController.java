@@ -38,18 +38,28 @@ public class BoardController {
         return "board/detail";
     }
     
-    @ResponseBody // return 타입을 JSON의 문자화 시켜준다, HTML태그를 안쓰기위함
-    @RequestMapping(value = "/cmtInsSel", method = RequestMethod.POST)
-    /* 
+    /*
         Map은 forEach를 사용할 수 없다 = for문도 사용할 수 없다
         비슷한게 있다
      */
-
-    public Map<String, Integer> cmtIsSel(@RequestBody BoardCmtEntity param) {
-        System.out.println("param = " + param);
+    @ResponseBody // return 타입을 JSON의 문자화 시켜준다, HTML태그를 안쓰기위함
+    @RequestMapping(value = "/cmtIns", method = RequestMethod.POST)
+    public Map<String, Integer> cmtIns(@RequestBody BoardCmtEntity param) {
+        /*
+        @RequestBody는 JSON타입의 데이터를 전달해주거나 혹은 반대로
+        JAVA의 객체데이터를 JSON형태로 프론트단에 전달해야 하는 경우 사용한다        
+        */
+        // service에서 값을 가저옴
+        int result = service.insBoardCmt(param);
+        
         Map<String, Integer> data = new HashMap<>();
-        data.put("result", 1);
-        data.put("age", 30);
+        data.put("result", result);
         return data;
+    }
+
+    @ResponseBody
+    @RequestMapping("/cmtSel")
+    public List<BoardCmtDomain> cmtSel(BoardCmtEntity param) {
+        return  service.selBoardCmtList(param);
     }
 }

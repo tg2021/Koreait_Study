@@ -10,5 +10,5 @@ public class BoardCmtEntity {
     private int iboard;
     private int iuser;
     private String cmt;
-    private String regdt;
+    private String regdate;
 }

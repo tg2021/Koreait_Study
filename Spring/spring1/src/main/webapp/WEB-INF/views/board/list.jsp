@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>리스트</h1>
-    <div>로그인 아이디 : ${sessionScope.loginUser.uid}</div>
+    <div>로그인 아이디 : ${sessionScope.loginUser.uid  }</div>
     <table>
         <tr>
             <th>번호</th>
