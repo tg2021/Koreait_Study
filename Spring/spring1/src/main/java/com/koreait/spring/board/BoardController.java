@@ -3,10 +3,8 @@ package com.koreait.spring.board;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
 import java.util.List;
@@ -43,7 +41,7 @@ public class BoardController {
         비슷한게 있다
      */
     @ResponseBody // return 타입을 JSON의 문자화 시켜준다, HTML태그를 안쓰기위함
-    @RequestMapping(value = "/cmtIns", method = RequestMethod.POST)
+    @RequestMapping(value = "/cmt", method = RequestMethod.POST)
     public Map<String, Integer> cmtIns(@RequestBody BoardCmtEntity param) {
         /*
         @RequestBody는 JSON타입의 데이터를 전달해주거나 혹은 반대로
@@ -58,8 +56,38 @@ public class BoardController {
     }
 
     @ResponseBody
-    @RequestMapping("/cmtSel")
-    public List<BoardCmtDomain> cmtSel(BoardCmtEntity param) {
+    @RequestMapping("/cmt/{iboard}")
+    // @PathVariable의 ("iboard")는 변수명이 다르면 적어주는데 같으면 생략가능
+    // 빈등록이 되면 싱글톤
+    public List<BoardCmtDomain> cmtSel(BoardCmtEntity param, @PathVariable("iboard") int iboard) {
+        param.setIboard(iboard);
         return  service.selBoardCmtList(param);
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/cmt/{icmt}", method = RequestMethod.DELETE)
+    public Map<String, Integer> delBoardCmt(BoardCmtEntity param, @PathVariable("icmt") int icmt) {
+        param.setIcmt(icmt);
+
+        int result = service.delBoardCmt(param);
+
+        Map<String, Integer> data = new HashMap<>();
+        data.put("result", result);
+        return data;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/cmt", method = RequestMethod.PUT)
+    public Map<String, Integer> updBoardCmt(@RequestBody BoardCmtEntity param) {
+       /*
+            @RequestBody는
+        */
+
+        int result = service.updBoardCmt(param);
+        Map<String, Integer> data = new HashMap<>();
+        data.put("result", result);
+        return data;
+    }
+
+
 }

@@ -24,6 +24,7 @@
         res폴더와 관련
         /로 시작하면 dispatcher가 잡음    -->
     <mvc:resources mapping="/res/**" location="/res/"/>
+    <mvc:resources mapping="/img/**" location="file:///D:/springImg/"/>
 
     <!-- 사용할 파일명을 완성해주는 객체 -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -31,4 +32,5 @@
         <property name="suffix" value=".jsp"/>
     </bean>
     <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+
 </beans>

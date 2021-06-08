@@ -1,6 +1,6 @@
 var cmtFrmElem = document.querySelector('#cmtFrm');	
 var cmtListElem = document.querySelector('#cmtList');
-//var cmtModalElem = document.querySelector('#modal');
+var cmtModalElem = document.querySelector('#modal');
 
 function regCmt() {
 	var cmtVal = cmtFrmElem.cmt.value;
@@ -20,13 +20,13 @@ function regAjax(param) {
 		method: 'POST',
 		// 주소값을 받아오는 간단한 방법
 		body: JSON.stringify(param),
-			headers:{
-				'accept' : 'application/json',
-				'content-type' : 'application/json;charset=UTF-8'
-			}
-		};
+		headers:{
+			'accept' : 'application/json',
+			'content-type' : 'application/json;charset=UTF-8'
+		}
+	};
 		// ''안에 데이터를 서버에 응답요청
-		fetch('cmtIns', init)
+		fetch('cmt', init)
 		// 서버에서 준 값
 		.then(function(res) {
 			return res.json();
@@ -52,7 +52,7 @@ function regAjax(param) {
 function getListAjax() {
 	var iboard = cmtListElem.dataset.iboard;
 	
-	fetch('cmtSel?iboard=' + iboard)
+	fetch('cmt/' + iboard)
 	.then(function(res) {
 		return res.json();
 	})
@@ -98,7 +98,7 @@ function makeCmtElemList(data) {
 	cmtListElem.append(tableElem);
 	
 	// iuser가 같으면 버튼 생성하기위해 iuser받아오기
-	var loginUserPk = cmtListElem.dataset.login_user_pk;
+	var loginUserPk = cmtListElem.dataset.loginUserPk;
 	
 	// 자바스크립트에서 forEach문으로 댓글뿌리기
 	data.forEach(function(item){
@@ -117,6 +117,7 @@ function makeCmtElemList(data) {
 		/*
 			iuser값을 비교하여 iuser가 같으면 삭제수정버튼 생성
 			다르면 삭제수정버튼 생성하지 않음
+			parseInt한 이유는 html에서는 숫자도 문자열로 받기때문에 정수타입으로 변환해야한다
 		*/
 		if(parseInt(loginUserPk) === item.iuser) {
 			var delBtn = document.createElement('button');	
@@ -128,6 +129,11 @@ function makeCmtElemList(data) {
 				
 				// 결과문이 true면 실행 
 				// concfirm boolean type
+				/*
+				문자열 -> 값이 없으면 false, 있으면 true
+				숫자 - > 0이면 false 0외의 숫자면 true
+				주소값이 있으면 ture, 없으면 false
+				 */
 				if(confirm('삭제하시겠습니까?')) {
 				delAjax(item.icmt);					
 				}
@@ -162,15 +168,15 @@ function makeCmtElemList(data) {
 // 수정 삭제
 function delAjax(icmt) {
 	// fetch - > 메소드호출
-	fetch('cmtDelUpd?icmt=' + icmt)
+	fetch('cmt/' + icmt, { method: "DELETE" })
 	// then -> 프라미스객체이기 때문에 사용
 	.then(function(res) {
 		return res.json();
 	})
-	.then(function(myJson){ 
-		console.log(myJson);
+	.then(function(data){
+		console.log(data);
 		
-		switch(myJson.result) {
+		switch(data.result) {
 			case 0:
 				alert('댓글 삭제를 실패하였습니다.');
 			break
@@ -187,22 +193,30 @@ function modAjax() {
 	// 자바스크립트 객체 생성방법
 	var param = {
 		icmt: cmtModFrmElem.icmt.value,
-		cmt: cmtModFrmElem.cmt.value
+		cmt: cmtModFrmElem.modCmt.value
+
 	}
 	
 const init = {
-	method: 'POST',
-		// 주소값을 받아오는 간단한 방법
-		body: new URLSearchParams(param)
-		};
+	method: 'PUT',
+	/*
+		주소값을 받아오는 간단한 방법
+		stringify는 JSON문자열 형태로 변환해준다.
+	 */
+	body: JSON.stringify(param),
+	headers:{
+		'accept' : 'application/json',
+		'content-type' : 'application/json;charset=UTF-8'
+	}
+	};
 		
-		fetch('cmtDelUpd', init)
+		fetch('cmt', init)
 		.then(function(res) {
 			return res.json();
 		})
 		.then(function(myJson) {
 			console.log(myJson)
-			switch(myJson) {
+			switch(myJson.result) {
 				case 0:
 				console.log('댓글 수정에 실패했습니다');
 				break;
@@ -216,13 +230,12 @@ const init = {
 }
 
 function openModModal({icmt, cmt}) {
+	// jsp에서 class = className
 	cmtModalElem.className = '';
-	console.log('icmt : ' + icmt);
-	console.log('cmt : ' + cmt);
 
 	var cmtModFrmElem = cmtModalElem.querySelector('#cmtModFrm');
 	cmtModFrmElem.icmt.value = icmt;
-	cmtModFrmElem.cmt.value = cmt;
+	cmtModFrmElem.modCmt.value = cmt;
 }
 
 function closeModModal() {
