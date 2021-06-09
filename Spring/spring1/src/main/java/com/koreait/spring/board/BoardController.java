@@ -35,7 +35,18 @@ public class BoardController {
         model.addAttribute("data", data);
         return "board/detail";
     }
-    
+
+    // get 방식
+    @GetMapping("/writeMod")
+    public void writeMod() {}
+
+    // post 방식
+    @PostMapping("/writeMod")
+    public String writeMod(BoardEntity param) {
+        int iboard = service.writeMod(param);
+        return "redirect:detail?iboard=" + iboard;
+    }
+
     /*
         Map은 forEach를 사용할 수 없다 = for문도 사용할 수 없다
         비슷한게 있다
@@ -57,7 +68,11 @@ public class BoardController {
 
     @ResponseBody
     @RequestMapping("/cmt/{iboard}")
-    // @PathVariable의 ("iboard")는 변수명이 다르면 적어주는데 같으면 생략가능
+    /*
+    {템플릿 변수} 와 동일한 이름을 갖는 파라미터를 추가
+    @PathVariable의 ("iboard")는 변수명이 다르면 적어주는데 같으면 생략가능
+    */
+
     // 빈등록이 되면 싱글톤
     public List<BoardCmtDomain> cmtSel(BoardCmtEntity param, @PathVariable("iboard") int iboard) {
         param.setIboard(iboard);

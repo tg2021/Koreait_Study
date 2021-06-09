@@ -22,7 +22,9 @@
     <context:component-scan base-package="com.koreait.spring"/>
     <!--
         res폴더와 관련
-        /로 시작하면 dispatcher가 잡음    -->
+        /로 시작하면 dispatcher가 잡음
+        /img/이면 D:/springImg으로 연결
+    -->
     <mvc:resources mapping="/res/**" location="/res/"/>
     <mvc:resources mapping="/img/**" location="file:///D:/springImg/"/>
 
@@ -30,7 +32,24 @@
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>
         <property name="suffix" value=".jsp"/>
+        <!--
+        파일열때 우선순위 정하는 것(첫번째가 아니라 두번째)
+        1순위를 정하면 2순위는 자동으로 정해지기때문에 안적어도 된다.
+        -->
+        <property name="order" value="2"/>
     </bean>
+    <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
+        <property name="order" value="1" />
+    </bean>
+
     <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
 
+    <bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+        <property name="definitions">
+            <list>
+                <value>/WEB-INF/tiles.xml</value>
+            </list>
+        </property>
+    </bean>
 </beans>

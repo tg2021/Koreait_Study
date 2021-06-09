@@ -54,11 +54,19 @@ public class UserService {
 
         // 확장자 구함
         String ext = FilenameUtils.getExtension(img.getOriginalFilename());
+        // 랜덤한 문자열을 조합해서 .확장자로 바꿔 변수명에 담는다.
         String fileNm = UUID.randomUUID().toString() + "." + ext;
-
+        
+        // 폴더에 파일을 담는다
         File target = new File(PATH + "/"  + fileNm);
         try {
             img.transferTo(target);
+
+            // 이전 이미지 삭제
+            File delFile = new File(PATH + "/" + loginUser.getProfileImg());
+            if(delFile.exists()) {
+                delFile.delete();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
