@@ -6,8 +6,11 @@ import java.util.List;
 
 @Mapper
 public interface BoardMapper {
+    int insBoard(BoardEntity pram);
     List<BoardDomain> selBoardList();
     BoardDomain selBoard(BoardDTO param);
+    int delBoard(BoardEntity param);
+    int updBoard(BoardEntity pram);
 
     /*
          Mapper 인터페이스

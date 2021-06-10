@@ -32,19 +32,30 @@ public class BoardController {
         // 값을 가져온다
         BoardDomain data = service.selBoard(param);
         // 값을 담는다
-        model.addAttribute("data", data);
+        model.addAttribute( "data", data);
         return "board/detail";
     }
 
     // get 방식
     @GetMapping("/writeMod")
-    public void writeMod() {}
+    public void writeMod(BoardDTO param, Model model) {
+        System.out.println("param = " + param);
+        if(param.getIboard() > 0) {
+            model.addAttribute("data", service.selBoard(param));
+        }
+    }
 
     // post 방식
     @PostMapping("/writeMod")
-    public String writeMod(BoardEntity param) {
+    public String writeModProc(BoardEntity param) {
         int iboard = service.writeMod(param);
         return "redirect:detail?iboard=" + iboard;
+    }
+
+    @GetMapping("/delBoard")
+    public String delBoard(BoardEntity param) {
+        service.delBoard(param);
+        return "redirect:list";
     }
 
     /*
