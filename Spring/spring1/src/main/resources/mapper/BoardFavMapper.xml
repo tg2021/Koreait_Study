@@ -11,7 +11,7 @@
     </insert>
 
     <select id="selBoardFav" resultType="_int">
-        SELECT count(iboard), iuser
+        SELECT count(iboard)
         FROM t_board_fav
         WHERE iboard = #{iboard}
         AND iuser = #{iuser}

@@ -1,19 +1,11 @@
 package com.koreait.spring.board;
 
 import com.koreait.spring.MyUtils;
-import com.koreait.spring.user.UserEntity;
-import com.mysql.cj.Session;
-import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpSession;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+
 
 @Service
 public class BoardService {
@@ -29,10 +21,20 @@ public class BoardService {
     @Autowired
     private MyUtils myUtils;
 
-    public List<BoardDomain> selBoardList() {
-        List<BoardDomain> list = mapper.selBoardList();
-        return list;
+
+    public List<BoardDomain> selBoardList(BoardDTO param) {
+        param.setIuser(myUtils.getLoginUserPk());
+        // paging
+        int startIdx = (param.getPage() - 1) * param.getRecordCnt();
+        param.setStartIdx(startIdx);
+
+        return mapper.selBoardList(param);
     }
+
+    public int selMaxPageVal(BoardDTO param) {
+        return mapper.selMaxPageVal(param);
+    }
+
     public BoardDomain selBoard(BoardDTO param) {
         return mapper.selBoard(param);
     }
@@ -79,8 +81,6 @@ public class BoardService {
         param.setIuser(myUtils.getLoginUserPk());
         return cmtMapper.delBoardCmt(param);
     }
-
-
 
 
 }

@@ -3,6 +3,21 @@
 <meta charset="UTF-8">
 <h1>리스트</h1>
 <div>
+    <form action="list" id="frm">
+        <input type="hidden1" name="page" value="#{param.page == null ? 1 : param.page}">
+        <select name="recordCnt">
+            <c:forEach begin="5" end="20" step="5" var="cnt">
+                <c:choose>
+                    <c:when test="${cnt eq param.recordCnt}">
+                        <option selected>${cnt}</option>
+                    </c:when>
+                </c:choose>
+            </c:forEach>
+        </select>
+    </form>
+</div>
+
+<div>
     <span>로그인 아이디 : ${sessionScope.loginUser.uid  }</span>
     <span><a href="/user/profile">프로필</a></span>
 </div>
@@ -26,6 +41,10 @@
                         ${item.title}
                     </c:otherwise>
                 </c:choose>
+                <!-- 좋아요 -->
+                <c:if test="${not empty sessionScope.loginUser && item.isFav eq 1}">
+                    <i class="fas fa-kiss-wink-heart"></i>
+                </c:if>
             </td>
 
             <c:choose>
@@ -51,5 +70,17 @@
             <td>${item.regdt }</td>
         </tr>
     </c:forEach>
-</table>
 
+</table>
+<div>
+    <c:forEach begin="1" end="${requestScope.maxPageVal}" var="page">
+        <c:choose>
+            <c:when test="${param.page eq page}">
+                <span class="selected">${page}</span>
+            </c:when>
+            <c:otherwise>
+                <span><a href="list?page=${page}">${page}</a></span>
+            </c:otherwise>
+        </c:choose>
+    </c:forEach>
+</div>
