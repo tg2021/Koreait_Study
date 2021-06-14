@@ -8,7 +8,7 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-4.2.xsd http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
 
-    <context:component-scan base-package="com.koreait.spring"/>
+    <context:component-scan base-package="com.koreait.spring1"/>
     <!--
     dbUtils 비슷
     <context:property-placeholder>
