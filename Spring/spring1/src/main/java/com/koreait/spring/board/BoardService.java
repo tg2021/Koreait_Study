@@ -1,11 +1,20 @@
 package com.koreait.spring.board;
 
 import com.koreait.spring.MyUtils;
+import com.koreait.spring.user.UserEntity;
+import com.mysql.cj.Session;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
-
+import java.util.UUID;
 
 @Service
 public class BoardService {
@@ -20,7 +29,6 @@ public class BoardService {
     private BoardCmtMapper cmtMapper;
     @Autowired
     private MyUtils myUtils;
-
 
     public List<BoardDomain> selBoardList(BoardDTO param) {
         param.setIuser(myUtils.getLoginUserPk());

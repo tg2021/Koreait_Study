@@ -1,0 +1,36 @@
+[Spring] Annotation 정리
+https://velog.io/@gillog/Spring-Annotation-%EC%A0%95%EB%A6%AC
+
+Annotation -> 주석
+Annotation의 용도
+1. 컴파일러에게 코드 작성 문법 에러를 체크하도록 정보를 제공
+2. 실행시(런타임시)특정 기능을 실행하도록 정보를 제공
+
+@Autowired
+속성(field), setter method, constructor(생성자)에서 사용하며 Type에 따라 알아서 Bean을 주입 해준다.
+
+@Controller
+Spring MVC에서 Controller클래스에 쓰인다.
+
+@RestController
+Spring에서 Controller 중 View로 응답하지 않는, Controller를 의미
+method의 반환 결과를 JSON 형태로 반환
+이 Annotation이 적혀있는 Controller의 method는 HttpResponse로 바로 응답이 가능
+@ResponseBody 역할을 자동적으로 해주는 Annotation
+
+@Service
+Service Class에서 쓰인다.
+비즈니스 로직을 수행하는 Class라는 것을 나타내는 용도이다.
+
+@RequestMapping
+요청 URL을 어떤 method가 처리할지 mapping해주는 Annotation이다.
+Controller나 Controller의 method에 적용한다.
+요청 받는 형식을 정의하지 않는다면, 자동적으로 GET으로 설정
+
+@RequestBody
+요청이 온 데이터(JSON이나 XML형식)를 바로 Class나 model로 매핑하기 위한 Annotation
+요청에서 넘어온 body 값들을 자바 타입으로 파싱
+HTTP POST 요청에 대해 request body에 있는 request message에서 값을 얻어와 매핑한다.
+RequestData를 바로 Model이나 클래스로 매핑
+
+@PathVariable 어노테이션을 이용해서 {템플릿 변수} 와 동일한 이름을 갖는 파라미터를 추가

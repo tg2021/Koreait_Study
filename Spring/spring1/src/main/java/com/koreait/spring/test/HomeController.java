@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
     // @RequestMapping에 주소값이 jsp파일명과 같으면 리턴생략가능
     @RequestMapping ("/home")
-    public void home() {
-    }
+    public void home() {}
 
 }

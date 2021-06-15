@@ -25,11 +25,19 @@ public class BoardFavController {
         return result;
     }
     @GetMapping("/fav")
+    public Map<String, Object> selFavBoardList(BoardDTO param) {
+        Map<String, Object> result = new HashMap<>();
+        param.setSelType(1);
+        result.put("list", service2.selBoardList(param));
+        result.put("maxPageVal", service2.selMaxPageVal(param));
+        return result;
+    }
+    /*
     public List<BoardDomain> selFavBoardList(BoardDTO param) {
         param.setSelType(1);
         return service2.selBoardList(param);
     }
-
+    */
     /*
         @PathVariable를 적는 이유는
      */

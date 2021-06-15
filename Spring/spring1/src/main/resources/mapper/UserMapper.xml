@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- DAO생성 -->
-<mapper namespace="com.koreait.com.koreait.spring1.user.UserMapper">
+<mapper namespace="com.koreait.spring.user.UserMapper">
     <insert id="insUser">
         INSERT INTO t_user
         (uid, upw, unm, gender)

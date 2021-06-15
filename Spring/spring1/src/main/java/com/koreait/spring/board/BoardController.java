@@ -12,7 +12,7 @@ import java.util.Map;
 
 // 무조건 적어줘야 @RequestMapping할 수 있다.
 // 고객의 요청이 왔을때 메소드를 후출시키는 기능
-@Controller 
+@Controller // json 으로 보낸다
 @RequestMapping("/board")
 public class BoardController {
 

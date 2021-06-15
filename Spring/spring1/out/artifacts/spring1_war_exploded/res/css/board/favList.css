@@ -7,3 +7,5 @@ img {
     height: 50px;
     border-radius: 50%;
 }
+
+.selected { color: #e74c3c; font-weight: bold; }

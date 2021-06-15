@@ -35,3 +35,4 @@ section { padding-left: 40px; padding-right: 40px;}
 
 a { text-decoration: none; color: black; }
 
+.selected { color: #e74c3c; font-weight: bold; }

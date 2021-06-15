@@ -1,0 +1,108 @@
+대소문자 가리지않게
+https://strawberry-smoothie.tistory.com/25
+
+경로설정
+https://nesoy.github.io/articles/2017-02/SpringMVC
+
+스프링 url-pattern 설정(/ 와 *.) 차이에 대한 개념!!
+https://itmore.tistory.com/entry/%EC%8A%A4%ED%94%84%EB%A7%81-urlpattern-%EC%84%A4%EC%A0%95-%EC%99%80-%EC%B0%A8%EC%9D%B4%EC%97%90-%EB%8C%80%ED%95%9C-%EA%B0%9C%EB%85%90
+
+인텔리J(IntelliJ) 임포트(Import) / Eclipse Ctrl + Shift + O in IntelliJ IDEA
+https://hjjungdev.tistory.com/102
+
+톰캣 get방식 인코딩
+    <Connector port="8090" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" URIEncoding="UTF-8" />
+
+콘솔창 깨짐 방지
+Edit Custom VM Options...
+서버 껐다가 킴
+-Dfile.encoding=UTF-8
+
+다음과 같이 의존성 추가 후 톰캣을 구동하였으나
+https://namubada.net/256
+
+jsp 파일
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>#[[$END$]]#</title>
+  </head>
+  <body>
+  
+  </body>
+</html>
+
+mybatis
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="#[[$END$]]#">
+
+</mapper>
+
+lombok ToString
+https://projectlombok.org/features/ToString
+
+controller mapping담당
+service logic담당
+
+application
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.2.xsd
+        http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd">
+
+        <context:property-placeholder location="classpath:application.properties" />
+
+        <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+            <property name="driverClassName" value="${db.driver}" />
+            <property name="jdbcUrl" value="${db.host}" />
+            <property name="username" value="${db.username}" />
+
+dispatcher
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- MVC 패턴 사용하고 싶으면... 즉, @Controller 애노테이션을 사용하고 싶으면 적어주셔야 함 -->
+    <mvc:annotation-driven />
+
+    <!-- 애노테이션을 사용하고 싶으면 -->
+    <context:annotation-config />
+
+    <!-- 애노테이션으로 빈 등록할 클래스들을 스캔뜨는 시작 패키지를 설정 -->
+    <context:component-scan base-package="com.koreait.spring" />
+
+    <!-- 사용할 파일명을 완성해주는 객체 -->
+    <bean id="viewResolver" class="org.springf
+
+
+시큐리티
+인증 (로그인)
+세션, JWT()
+
+권한 (접슨할 수 있는 권한이 있는가)
+
+tiles
+https://tiles.apache.org/framework/tutorial/basic/pages.html
+
+비로그인시 상위 메유에 "회원가입" 메뉴가 나타나도록 
+회원가입 주소는 /user/join

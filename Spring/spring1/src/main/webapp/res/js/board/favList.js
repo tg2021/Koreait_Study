@@ -1,11 +1,13 @@
 const listElem = document.querySelector('#List')
-
-function getListAjax() {
-    fetch('fav')
+const pagingElem = document.querySelector('#paging')
+// getListAjax(page = 1) 페이지를 안보내주면 1을 사용
+function getListAjax(page = 1) {
+    fetch('fav?page=' + page)
         .then(res => res.json())
         .then(myJson => {
             console.log(myJson);
-            makeView(myJson);
+            makeView(myJson.list);
+            makePaging(myJson.maxPageVal, page);
         });
 }
 /*
@@ -19,7 +21,27 @@ fetch('fav')
     });
 */
 
+// 페이징 view 만들기
+function makePaging(maxPageVal, selectedPage) {
+    pagingElem.innerHTML = '';
+    for(let i = 1; i <= maxPageVal; i++) {
+        const span = document.createElement('span');
+        if(selectedPage === i) {
+            span.classList.add('selected');
+        } else {
+            span.classList.add('pointer');
+            span.addEventListener('click', function (){
+               getListAjax(i);
+            });
+        }
+        span.innerText = i;
+        pagingElem.append(span);
+    }
+}
+
+// 리스트 view 만들기
 function makeView(data) {
+    listElem.innerHTML='';
     const table = document.createElement('table');
     listElem.append(table);
 
@@ -53,5 +75,9 @@ function makeView(data) {
             <td>${item.regdt}</td>
        `;
     });
+}
+
+function moveToDetail(iboard) {
+    location.href = '/board/detail?iboard=' + iboard;
 }
 getListAjax();
